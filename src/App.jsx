@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from "./components/Home";
-import Project from "./components/Project";
-import Contact from "./components/Contact";
-import Certification from "./components/Certification";
-import Experience from './components/Experience';
+import Navbar from './components/Navbar.jsx';
+import Home from "./components/Home.jsx";
+import Project from "./components/Project.jsx";
+import Contact from "./components/Contact.jsx";
+import Certification from "./components/Certification.jsx";
+import Experience from './components/Experience.jsx';
 import "./styles/App.css";
 import "./styles/Roots.css";
 
