@@ -8,7 +8,7 @@ export const data = {
     linkedin: "https://www.linkedin.com/in/pramod58",
     github: "https://github.com/Pramod058",
     whatsapp: "https://wa.me/9779816069759",
-    profilePicture: "assets/profile.png", 
+    profilePicture: "src/public/assets/profile.png", 
   },
   skills: {
     programming: ["Python", "JavaScript", "TypeScript", "C++", "C"],
@@ -118,25 +118,25 @@ export const data = {
       title: "Computer Networks: Bits and Bytes",
       issuer: "Coursera",
       status: "Issued: Date", 
-      image: "/assets/certificates/cn_bits_and_bytes.jpg",
+      image: "src/public/assets/certificates/cn_bits_and_bytes.jpg",
     },
     {
       title: "Programming for Everybody (Python)",
       issuer: "Coursera",
       status: "Issued: July 2020",
-      image: "/assets/certificates/prog_for_everybody.jpg",
+      image: "src/public//assets/certificates/prog_for_everybody.jpg",
     },
     {
       title: "Python for Everybody Specialization",
       issuer: "Coursera",
       status: "Issued: Aug 2020",
-      image: "/assets/certificates/python_for_everybody.jpg",
+      image: "src/public//assets/certificates/python_for_everybody.jpg",
     },
     {
       title: "Technical Support Fundamentals",
       issuer: "Coursera",
       status: "Issued: Date", 
-      image: "/assets/certificates/tech_support_fundamental.jpg",
+      image: "src/public//assets/certificates/tech_support_fundamental.jpg",
     },
   ],
 };

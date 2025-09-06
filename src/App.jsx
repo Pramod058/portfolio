@@ -6,7 +6,7 @@ import Contact from "./components/Contact";
 import Certification from "./components/Certification";
 import Experience from './components/Experience';
 import "./styles/App.css";
-import "./styles/Root.css";
+import "./styles/Roots.css";
 
 function App() {
   return (
