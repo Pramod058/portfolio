@@ -6,9 +6,10 @@ import '../styles/Navbar.css';
 function Navbar() {
   const { name } = data.personalInfo;
   const [activeSection, setActiveSection] = useState('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleSectionScroll = () => {
       const sections = ['about', 'projects', 'experience', 'certifications', 'contact'];
       const scrollPosition = window.scrollY + 150;
 
@@ -19,18 +20,29 @@ function Navbar() {
 
       for (const id of sections) {
         const section = document.getElementById(id);
-        if (section) {
-          if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
-            setActiveSection(id);
-            break;
-          }
+        if (section && section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+          setActiveSection(id);
+          break;
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleSectionScroll);
+    return () => window.removeEventListener('scroll', handleSectionScroll);
   }, []);
+
+  useEffect(() => {
+    const handleProgressScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      setScrollProgress(scrollPercent);
+    };
+
+    window.addEventListener('scroll', handleProgressScroll);
+    return () => window.removeEventListener('scroll', handleProgressScroll);
+  }, []);
+
 
   const smoothScrollTo = (e, targetId) => {
     e.preventDefault();
@@ -76,6 +88,9 @@ function Navbar() {
         </div>
         <ThemeToggle />
       </nav>
+      <div className="progress-bar-container">
+        <div className="progress-bar-fill" style={{ width: `${scrollProgress}%` }}></div>
+      </div>
     </header>
   );
 }
