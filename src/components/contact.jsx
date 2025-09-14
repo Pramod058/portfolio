@@ -29,7 +29,7 @@ function Contact() {
         <div className="contact-content-wrapper">
           <div className="contact-header">
             <h1 className="contact-title">Get in Touch</h1>
-            <p className="contact-subtitle">I'm currently open to new opportunities. Feel free to reach out for collaborations or just to say hello!</p>
+            <p className="contact-subtitle">I am currently open to new opportunities. Feel free to reach out for collaborations or just to say hello!</p>
             <a href={`mailto:${email}`} className="contact-email-link">{email}</a>
           </div>
 
