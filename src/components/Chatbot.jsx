@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { getAIResponse } from '../logic/aiLogic';
+import { getAIResponse } from '../logic/ailogic.js';
 import { BsChatDotsFill } from 'react-icons/bs'; 
 import { IoClose, IoPaperPlane } from 'react-icons/io5';
 import '../styles/Chatbot.css';
