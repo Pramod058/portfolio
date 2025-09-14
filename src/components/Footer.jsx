@@ -33,8 +33,8 @@ function Footer() {
 
       </div>
           <div className="footer-flags">
-            <img src="public\assets\Nepal.gif" alt="Nepal Flag" className="flag-icon" />
-            <img src="public\assets\Korea.gif" alt="South Korea Flag" className="flag-icon" />
+            <img src="assets/Nepal.gif" alt="Nepal Flag" className="flag-icon" />
+            <img src="assets/Korea.gif" alt="South Korea Flag" className="flag-icon" />
           </div>
     </footer>
   );
