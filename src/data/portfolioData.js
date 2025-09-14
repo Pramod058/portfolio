@@ -8,8 +8,12 @@ export const data = {
     linkedin: "https://www.linkedin.com/in/pramod58",
     github: "https://github.com/Pramod058",
     whatsapp: "https://wa.me/9779816069759",
-    profilePicture: "assets/profile.png", 
-  },
+    profilePictures: [
+      "assets/profile1.png",
+      "assets/profile2.png",
+      "assets/profile3.png",
+      "assets/profile4.png",
+    ],  },
   skills: {
     programming: ["Python", "JavaScript", "TypeScript", "C++", "C"],
     libraries: [
