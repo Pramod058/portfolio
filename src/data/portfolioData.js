@@ -112,7 +112,7 @@ export const data = {
       title: "AI for Everyone",
       issuer: "Coursera",
       status: "Issued: June 2020",
-     image: "public/assets/certificates/ai_for_everyone.jpg",    },
+     image: "assets/certificates/ai_for_everyone.jpg",    },
     {
       title: "Computer Networks: Bits and Bytes",
       issuer: "Coursera",
