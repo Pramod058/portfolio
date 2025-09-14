@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useMemo } from "react";
 import {
   FaWhatsapp,
@@ -42,8 +41,19 @@ function Home() {
     return profilePictures[randomIndex];
   }, [profilePictures]);
 
+  const smoothScrollTo = (e, targetId) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
-    <div className="homepage-wrapper">
+    <div id="home" className="homepage-wrapper">
       <section className="home-hero-section">
         <div className="section-container hero-container">
           <div className="hero-text">
@@ -91,9 +101,13 @@ function Home() {
                 <FaWhatsapp />
               </a>
             </div>
-            <Link to="/project" className="action-button primary">
+            <a 
+              href="#projects" 
+              onClick={(e) => smoothScrollTo(e, 'projects')} 
+              className="action-button primary"
+            >
               View My Projects
-            </Link>
+            </a>
           </div>
           <div className="hero-image-container">
             <img src={randomProfilePicture} alt={name} className="profile-picture" />
@@ -167,4 +181,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

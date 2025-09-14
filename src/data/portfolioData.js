@@ -14,6 +14,15 @@ export const data = {
       "assets/profile3.png",
       "assets/profile4.png",
     ],  },
+
+     aboutMe: {
+    title: "About Me",
+    description: [
+      "Hello! I'm Pramod, a passionate developer and data enthusiast with a keen eye for turning complex problems into elegant, user-friendly solutions. My journey into technology started with a deep curiosity for how things work, which has since evolved into a full-fledged passion for building software and analyzing data.",
+      "I thrive in environments where I can leverage my skills in Python, JavaScript, and machine learning to create meaningful impact. Whether I'm developing a predictive model, building a responsive web application, or diving into a new dataset, I am driven by the challenge of learning and the satisfaction of a job well done.",
+      "When I'm not coding, you can find me exploring new AI/ML research, contributing to open-source projects, or planning my next hike. I'm always eager to connect with like-minded individuals and explore new opportunities for collaboration."
+    ],
+    image: "assets/profile2.png" },
   skills: {
     programming: ["Python", "JavaScript", "TypeScript", "C++", "C"],
     libraries: [

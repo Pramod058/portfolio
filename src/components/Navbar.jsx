@@ -1,24 +1,83 @@
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 import { data } from '../data/portfolioData';
 import '../styles/Navbar.css';
 
 function Navbar() {
   const { name } = data.personalInfo;
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['about', 'projects', 'experience', 'certifications', 'contact'];
+      const scrollPosition = window.scrollY + 150;
+
+      if (window.scrollY < 400) {
+        setActiveSection('home');
+        return;
+      }
+
+      for (const id of sections) {
+        const section = document.getElementById(id);
+        if (section) {
+          if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const smoothScrollTo = (e, targetId) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const getNavLinkClass = (sectionId) => {
+    return activeSection === sectionId ? 'nav-link active' : 'nav-link';
+  };
+
   return (
     <header className="navbar-header">
       <nav className="navbar-container">
-        <Link to="/" className="navbar-logo">{name}</Link>
+        <a href="#home" onClick={(e) => smoothScrollTo(e, 'home')} className="navbar-logo">
+          {name}
+        </a>
         <div className="navbar-links">
-          <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Home</NavLink>
-          <NavLink to="/project" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Projects</NavLink>
-          <NavLink to="/certification" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Certifications</NavLink>
-          <NavLink to="/experience" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Experience</NavLink>
-          <NavLink to="/contact" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Contact</NavLink>
+          <a href="#home" onClick={(e) => smoothScrollTo(e, 'home')} className={getNavLinkClass('home')}>
+            Home
+          </a>
+          <a href="#about" onClick={(e) => smoothScrollTo(e, 'about')} className={getNavLinkClass('about')}>
+            About
+          </a>
+          <a href="#projects" onClick={(e) => smoothScrollTo(e, 'projects')} className={getNavLinkClass('projects')}>
+            Projects
+          </a>
+          <a href="#experience" onClick={(e) => smoothScrollTo(e, 'experience')} className={getNavLinkClass('experience')}>
+            Experience
+          </a>
+          <a href="#certifications" onClick={(e) => smoothScrollTo(e, 'certifications')} className={getNavLinkClass('certifications')}>
+            Certifications
+          </a>
+          <a href="#contact" onClick={(e) => smoothScrollTo(e, 'contact')} className={getNavLinkClass('contact')}>
+            Contact
+          </a>
         </div>
         <ThemeToggle />
       </nav>
     </header>
   );
 }
+
 export default Navbar;
