@@ -1,6 +1,7 @@
 .contact-section {
   background-color: var(--color-surface);
   width: 100%;
+
 }
 
 .contact-content-wrapper {
@@ -41,14 +42,14 @@
 
 .contact-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   gap: 1.5rem;
   text-align: left;
 }
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
+  width: 95%;
   padding: 1rem;
   font-size: 1rem;
   font-family: var(--font-body);
@@ -87,7 +88,8 @@
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: all 0.3s ease;
-  align-self: flex-start;
+  justify-self: center;
+  width: 100%;
 }
 
 .contact-submit-button:hover {
@@ -104,13 +106,13 @@
 }
 
 .submission-message.success {
-  background-color: rgba(62, 207, 142, 0.15); /* Supabase green */
+  background-color: rgba(62, 207, 142, 0.15); 
   color: #3ecf8e;
   border: 1px solid #3ecf8e;
 }
 
 .submission-message.error {
-  background-color: rgba(224, 35, 78, 0.15); /* NestJS red */
+  background-color: rgba(224, 35, 78, 0.15); 
   color: #e0234e;
   border: 1px solid #e0234e;
 }
