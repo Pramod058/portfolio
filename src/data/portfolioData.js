@@ -133,6 +133,6 @@ export const data = {
       title: "Technical Support Fundamentals",
       issuer: "Coursera",
       status: "Issued: Date", 
-     image: "public/assets/certificates/tech_support_fundamental.jpg",    },
+     image: "assets/certificates/tech_support_fundamental.jpg",    },
   ],
 };
