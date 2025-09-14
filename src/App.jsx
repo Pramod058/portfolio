@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Home from "./components/Home.jsx";
 import Project from "./components/Project.jsx";
-import Contact from './components/Contact.jsx';
+import Contact from "./components/Contact.jsx";
 import Certification from "./components/Certification.jsx";
 import Experience from './components/Experience.jsx';
 import "./styles/App.css";
