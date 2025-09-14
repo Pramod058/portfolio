@@ -95,6 +95,32 @@
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
+.submission-message {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  text-align: center;
+}
+
+.submission-message.success {
+  background-color: rgba(62, 207, 142, 0.15); /* Supabase green */
+  color: #3ecf8e;
+  border: 1px solid #3ecf8e;
+}
+
+.submission-message.error {
+  background-color: rgba(224, 35, 78, 0.15); /* NestJS red */
+  color: #e0234e;
+  border: 1px solid #e0234e;
+}
+
+.contact-submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
 @media screen and (max-width: 768px) {
   .contact-title {
     font-size: 2rem;

@@ -1,26 +1,56 @@
 import { useState } from "react";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
 import '../styles/Contact.css';
 import { data } from '../data/portfolioData';
 
 function Contact() {
+  const { email } = data.personalInfo;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState("");
 
-  const { email, linkedin, github, location } = data.personalInfo;
+  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email: fromEmail, message } = formData;
-    const subject = `Portfolio Contact from ${name}`;
-    const body = `Name: ${name}%0AEmail: ${fromEmail}%0A%0AMessage:%0A${message}`;
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setSubmissionMessage("");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Contact from ${formData.name}`,
+          ...formData,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmissionMessage("Success! Your message has been sent.");
+        setFormData({ name: "", email: "", message: "" }); // Clear the form
+      } else {
+        console.error("Submission failed:", result);
+        setSubmissionMessage("Sorry, something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      setSubmissionMessage("An error occurred. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -28,54 +58,35 @@ function Contact() {
       <div className="section-container">
         <div className="contact-content-wrapper">
           <div className="contact-header">
-            <h1 className="contact-title">Get in Touch</h1>
-            <p className="contact-subtitle">I am currently open to new opportunities. Feel free to reach out for collaborations or just to say hello!</p>
+            <h1 className="page-title">Get in Touch</h1>
+            <p className="contact-subtitle">I'm currently open to new opportunities. Feel free to use the form below or email me directly.</p>
             <a href={`mailto:${email}`} className="contact-email-link">{email}</a>
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-              />
+              <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Your Name"/>
             </div>
-
             <div className="form-group">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Your Email"
-              />
+              <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="Your Email"/>
             </div>
-
             <div className="form-group">
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                required
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Your Message"
-              />
+              <textarea name="message" rows="5" required value={formData.message} onChange={handleChange} placeholder="Your Message"/>
             </div>
-
-            <button type="submit" className="contact-submit-button">Send Message ➤</button>
+            <button type="submit" className="contact-submit-button" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Message ➤'}
+            </button>
           </form>
+
+          {submissionMessage && (
+            <div className={`submission-message ${submissionMessage.includes('Success') ? 'success' : 'error'}`}>
+              {submissionMessage}
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Contact;
